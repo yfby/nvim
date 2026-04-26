@@ -1,0 +1,37 @@
+require("dashboard").setup({
+  theme = "doom",
+  config = {
+    header = {
+      '              ╭━━━╮╭━━━╮╭━━╮╭━━━━╮╭━━━╮╭━━━╮╭╮ ',
+      '              ┃╭━━╯╰╮╭╮┃╰┫┣╯┃╭╮╭╮┃┃╭━╮┃┃╭━╮┃┃┃ ',
+      '╭━━╮╭╮╭╮╭━╮╭━╮┃╰━━╮ ┃┃┃┃ ┃┃ ╰╯┃┃╰╯┃┃ ┃┃┃╰━╯┃┃┃ ',
+      '┃╭╮┃┃┃┃┃┃╭╯┃╭╯┃╭━━╯ ┃┃┃┃ ┃┃   ┃┃  ┃┃ ┃┃┃╭╮╭╯╰╯ ',
+      '┃╰╯┃┃╰╯┃┃┃ ┃┃ ┃╰━━╮╭╯╰╯┃╭┫┣╮  ┃┃  ┃╰━╯┃┃┃┃╰╮╭╮ ',
+      '┃╭━╯╰━━╯╰╯ ╰╯ ╰━━━╯╰━━━╯╰━━╯  ╰╯  ╰━━━╯╰╯╰━╯╰╯ ',
+      '┃┃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀Z⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀      UwU           ',
+      '╰╯⠀⠀⢀⡴⣆⠀⠀⠀⠀⠀⣠⡀z⠀⠀⠀⠀⠀⣼⣿⡗⠀⠀⠀⠀                    ',
+      '⠀⠀⠀⣠⠟⠀⠘⠷⠶⠶⠶⠾⠉⢳⡄⠀⠀⠀⠀⠀⣧⣿⠀⠀⠀⠀⠀            OwO     ',
+      '⠀⠀⣰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣤⣤⣤⣤⣤⣿⢿⣄⠀⠀⠀ ◝(ᵔᵕᵔ)◜             ',
+      '⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠙⣷⡴⠶⣦      >_<           ',
+      '⠀⠀⢱⡀⠀⠉⠉⠀⠀⠀⠀⠉⠉⠀⢠⡟⠀⠀⠀⢀⣀⣠⣤⠿⠞⠛⠋              (•͈⌔•͈) ',
+      '⣠⠾⠋⠙⣶⣤⣤⣤⣤⣤⣀⣠⣤⣾⣿⠴⠶⠚⠋⠉⠁⠀⠀⠀⠀⠀⠀                    ',
+      '⠛⠒⠛⠉⠉⠀⠀⠀⣴⠟⢃⡴⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                     ',
+      '⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                    ',
+    },
+    center = {
+      { icon = "󰈢 ", desc = "Find File", key = "ff", action = "Telescope find_files" },
+      { icon = "󰭎 ", desc = "Live Grep", key = "fg", action = "Telescope live_grep" },
+      { icon = "󰋽 ", desc = "Recent Files", key = "fr", action = "Telescope oldfiles" },
+      { icon = "󰆏 ", desc = "New File", key = "n", action = "ene | startinsert" },
+      { icon = "󰍉 ", desc = "Settings", key = "c", action = "edit $MYVIMRC" },
+      { icon = "󰰒 ", desc = "Lazy", key = "u", action = "Lazy" },
+      { icon = "󰗼 ", desc = "Quit", key = "q", action = "qa" },
+    },
+    footer = { "v" .. vim.version().major .. "." .. vim.version().minor },
+  },
+  shortcuts = {
+    { icon = "󰈢 ", desc = "Find File", key = "ff", action = "Telescope find_files" },
+    { icon = "󰭎 ", desc = "Live Grep", key = "fg", action = "Telescope live_grep" },
+    { icon = "󰋽 ", desc = "Recent", key = "fr", action = "Telescope oldfiles" },
+  },
+})
