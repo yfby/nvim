@@ -4,6 +4,8 @@ A modern, feature-rich Neovim configuration with Catppuccin theme.
 
 ## Plugins
 
+### TODO: reconfig visuals, and add option for gruvbox theme
+
 ### Core
 
 | Plugin                        | Description                    |

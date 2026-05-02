@@ -26,6 +26,7 @@ opt.sidescrolloff = 8
 -- Appearance
 opt.termguicolors = true
 opt.signcolumn = "yes"
+opt.fillchars = { eob = " " }
 opt.cursorline = false
 opt.showmode = false
 opt.showtabline = 2

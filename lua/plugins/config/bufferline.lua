@@ -15,7 +15,6 @@ require("bufferline").setup {
       },
     },
     indicator = {
-      icon = "▎",
       style = "underline",
     },
   },

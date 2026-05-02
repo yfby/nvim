@@ -33,17 +33,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Remove tilde characters from end of buffer in dashboard, uncomment if eob is unset to " "
 -- vim.api.nvim_create_autocmd("FileType", {
---   pattern = { "python" },
+--   pattern = { "dashboard" },
 --   callback = function()
---     vim.opt_local.tabstop = 4
---     vim.opt_local.shiftwidth = 4
+--     vim.opt_local.fillchars = { eob = " " }
 --   end,
 -- })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "dashboard" },
-  callback = function()
-    vim.opt_local.fillchars = { eob = " " }
-  end,
-})
