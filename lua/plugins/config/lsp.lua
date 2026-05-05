@@ -13,6 +13,7 @@ default_capabilities.textDocument.completion.completionItem.snippetSupport = tru
 
 mason_lspconfig.setup({
   ensure_installed = {
+    "arduino_language_server",
     "lua_ls",
     "ts_ls",
     "rust_analyzer",
@@ -65,8 +66,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
     keymap("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Find references" })
     keymap("n", "<leader>cd", vim.diagnostic.open_float, { buffer = bufnr, desc = "Line diagnostics" })
-    keymap("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Previous diagnostic" })
-    keymap("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Next diagnostic" })
+    keymap("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { buffer = bufnr, desc = "Previous diagnostic" })
+    keymap("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { buffer = bufnr, desc = "Next diagnostic" })
     keymap("n", "<leader>dl", vim.diagnostic.setloclist, { buffer = bufnr, desc = "Diagnostic list" })
   end,
 })
@@ -174,7 +175,7 @@ local server_configs = {
         }
       },
       css = {
-        validate = { },
+        validate = {},
         completion = {
           triggerPropertyValueCompletion = true,
           completionPropertyValue = { enable = true }
@@ -247,11 +248,11 @@ local installed = mason_lspconfig.get_installed_servers()
 for _, server_name in ipairs(installed) do
   local config = vim.deepcopy(server_configs[server_name] or {})
   config.capabilities = default_capabilities
-  
+
   local ok, err = pcall(function()
     vim.lsp.config(server_name, config)
   end)
-  
+
   if not ok then
     vim.notify(
       "Failed to setup LSP server '" .. server_name .. "':\n" .. tostring(err),
@@ -262,7 +263,3 @@ end
 
 -- Enable the configured servers
 vim.lsp.enable(installed)
-
-
-
-
