@@ -13,7 +13,6 @@ default_capabilities.textDocument.completion.completionItem.snippetSupport = tru
 
 mason_lspconfig.setup({
   ensure_installed = {
-    "arduino_language_server",
     "lua_ls",
     "ts_ls",
     "rust_analyzer",
@@ -66,8 +65,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
     keymap("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Find references" })
     keymap("n", "<leader>cd", vim.diagnostic.open_float, { buffer = bufnr, desc = "Line diagnostics" })
-    keymap("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { buffer = bufnr, desc = "Previous diagnostic" })
-    keymap("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { buffer = bufnr, desc = "Next diagnostic" })
+    keymap("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+      { buffer = bufnr, desc = "Previous diagnostic" })
+    keymap("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+      { buffer = bufnr, desc = "Next diagnostic" })
     keymap("n", "<leader>dl", vim.diagnostic.setloclist, { buffer = bufnr, desc = "Diagnostic list" })
   end,
 })
