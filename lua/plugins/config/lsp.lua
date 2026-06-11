@@ -34,6 +34,7 @@ mason_lspconfig.setup({
     "dockerfile_language_server",
     "sqls",
     "stylelint_lint",
+    "jdtls",
   },
   automatic_installation = true,
 })
@@ -240,6 +241,35 @@ local server_configs = {
         hover = true,
         format = true
       }
+    },
+  },
+  jdtls = {
+    settings = {
+      java = {
+        eclipse = {
+          downloadSources = true,
+        },
+        configuration = {
+          updateBuildConfiguration = "interactive",
+        },
+        maven = {
+          downloadSources = true,
+        },
+        implementationsCodeLens = {
+          enabled = false,
+        },
+        referencesCodeLens = {
+          enabled = false,
+        },
+        inlayHints = {
+          parameterNames = {
+            enabled = "all",
+          },
+        },
+        format = {
+          enabled = true,
+        },
+      },
     },
   },
 }

@@ -114,7 +114,6 @@ function M.open()
     "  WINDOWS",
     "  ──────────────────────────────────────────────────────────────────────────",
     "  <leader>uz           Zen mode",
-    "  <leader>ue           Toggle Edgy",
     "  <leader>ao           Aerial outline",
     "  Ctrl+\\              Toggle terminal",
     "  Ctrl+h j k l         Navigate splits",
@@ -202,3 +201,4 @@ vim.api.nvim_create_user_command("Cheatsheet", function()
 end, {})
 
 return M
+

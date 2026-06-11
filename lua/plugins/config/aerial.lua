@@ -1,4 +1,9 @@
-require("aerial").setup({
+local ok, aerial = pcall(require, "aerial")
+if not ok then
+  return
+end
+
+aerial.setup({
   backends = { "treesitter", "lsp", "markdown" },
   link_tree_to_filetree = false,
   ignore = { ".git" },
@@ -8,7 +13,6 @@ require("aerial").setup({
       return vim.b[buf].aerial_large_file
     end,
   },
-  load_on_setup = true,
   max_width = 40,
   min_width = 20,
   default_sign = "▎",

@@ -36,9 +36,5 @@ require("dashboard").setup({
     },
     footer = { "v" .. vim.version().major .. "." .. vim.version().minor },
   },
-  shortcuts = {
-    { icon = "󰈢 ", desc = "Find File", key = "ff", action = "Telescope find_files" },
-    { icon = "󰭎 ", desc = "Live Grep", key = "fg", action = "Telescope live_grep" },
-    { icon = "󰋽 ", desc = "Recent", key = "fr", action = "Telescope oldfiles" },
-  },
+  -- shortcuts are already in center above
 })

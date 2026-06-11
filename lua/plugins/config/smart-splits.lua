@@ -5,5 +5,4 @@ require("smart-splits").setup {
   cursor_follows_focus = false,
   at_edge = "resize",
   tmux_integration = true,
-  multiplexer_integration = "auto",
 }

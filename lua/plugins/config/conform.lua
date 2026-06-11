@@ -39,6 +39,7 @@ require("conform").setup {
     svelte = { "prettier", "eslint" },
     html = { "prettier" },
     graphql = { "prettier" },
+    java = { "google-java-format" },
     bash = { "shfmt" },
     sh = { "shfmt" },
   },
@@ -61,6 +62,11 @@ require("conform").setup {
     black = {
       condition = function(ctx)
         return vim.fn.executable("black") == 1
+      end,
+    },
+    google_java_format = {
+      condition = function(ctx)
+        return vim.fn.executable("google-java-format") == 1
       end,
     },
     rustfmt = {

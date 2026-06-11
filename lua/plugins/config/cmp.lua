@@ -16,7 +16,7 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<CR>"] = cmp.mapping.confirm { select = false }, -- don't auto-select first item; require explicit selection
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -128,6 +128,5 @@ cmp.setup.cmdline(":", {
   sources = cmp.config.sources {
     { name = "cmdline", option = { ignore_cmdline_completion = true } },
     { name = "path" },
-    { name = "cmdline_history" },
   },
 })

@@ -64,5 +64,5 @@ require("lualine").setup({
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { "neo-tree", "oil", "toggleterm", "quickfix", "symbols-outline" },
+  extensions = { "oil", "toggleterm", "quickfix" },
 })

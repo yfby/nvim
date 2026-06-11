@@ -1,19 +1,19 @@
 require("todo-comments").setup({
   signs = true,
-  sign_priority = { rust = 10 },
+  sign_priority = 10,
   keywords = {
-    FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG", "HACK" } },
+    FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG" } },
     TODO = { icon = "󰍨 ", color = "info" },
     HACK = { icon = "󰌗 ", color = "warning" },
     WARN = { icon = "󰌗 ", color = "warning", alt = { "WARNING" } },
-    PERF = { icon = "󰏙 ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+    PERF = { icon = "󰏙 ", color = "warning", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = "󰎙 ", color = "hint", alt = { "INFO" } },
     TEST = { icon = "󰰓 ", color = "test", alt = { "TESTING", "TESTS" } },
   },
   merge_keywords = true,
   highlight = {
     comments_only = true,
-    max_line_length = 120,
+    max_line_len = 120,
     disable = nil,
   },
   colors = {
@@ -25,10 +25,9 @@ require("todo-comments").setup({
   },
   search = {
     command = "rg",
-    args = { "--case-sensitive" },
-    regex_keywords = "FIX|FIXME|BUG|HACK|TODO|WARN|WARNING|PERF|OPTIM|PERFORMANCE|OPTIMIZE|NOTE|INFO|TEST|TESTING|TESTS",
+    args = { "--column", "--case-sensitive" },
     highlight = {
-      icon = "󰌘 ",
+      icon = " ",
     },
   },
 })

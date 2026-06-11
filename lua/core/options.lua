@@ -26,7 +26,7 @@ opt.sidescrolloff = 8
 -- Appearance
 opt.termguicolors = true
 opt.signcolumn = "yes"
-opt.fillchars = { eob = " " }
+-- opt.fillchars = { eob = " " }
 opt.cursorline = false
 opt.showmode = false
 opt.showtabline = 2
@@ -51,8 +51,7 @@ opt.fileencoding = "utf-8"
 -- Completion
 opt.completeopt = { "menuone", "noselect" }
 
--- Conceal
-opt.conceallevel = 0
+-- Conceal (0 = disabled; set to 2 to enable treesitter conceal features)
 
 -- Messages
 opt.cmdheight = 2

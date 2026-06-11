@@ -19,9 +19,13 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   -- Theme
+  --{
+  --  "catppuccin/nvim",
+  --  name = "catppuccin",
+  --  priority = 1000
+  --},
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "ellisonleao/gruvbox.nvim",
     priority = 1000
   },
 
@@ -115,14 +119,9 @@ require("lazy").setup({
 
   -- LSP STUFF!
   'neovim/nvim-lspconfig',
-  'mason-org/mason.nvim',
-  'mason-org/mason-lspconfig.nvim',
-
-  -- Lua development (lazy load for lua files)
-  {
-    'folke/neodev.nvim',
-    ft = 'lua',
-  },
+  -- Use the maintained mason repositories
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
 
   -- Autocompletion
   {
@@ -464,7 +463,7 @@ local loader = require("core.loader")
 
 -- Load critical configs immediately (UI essentials)
 local critical_configs = {
-  "plugins.config.catppuccin",
+  "plugins.config.gruvbox",
   "plugins.config.lualine",
   "plugins.config.bufferline",
   "plugins.config.treesitter",

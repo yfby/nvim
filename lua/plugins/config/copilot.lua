@@ -20,6 +20,6 @@ copilot.setup({
   },
   copilot_node_command = "node",
   root_dir = function()
-    return vim.loop.cwd() or "."
+    return vim.uv.cwd() or "."
   end,
 })

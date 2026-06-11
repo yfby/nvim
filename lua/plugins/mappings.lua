@@ -22,10 +22,9 @@ keymap("n", "<leader>fl", require("telescope.builtin").lsp_document_symbols, { d
 
 -- Find TODOs
 pcall(function()
-  local builtin = require("telescope.builtin")
   keymap("n", "<leader>ft", function()
-    builtin.grep_string({ search = "TODO|FIXME|BUG|HACK" })
-  end, { desc = "Find TODOs" })
+    require("telescope").extensions["todo-comments"].todo()
+  end, { desc = "TODOs" })
 end)
 
 -- Telescope Dap
@@ -46,6 +45,8 @@ keymap("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { 
 keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle<CR>", { desc = "Symbols" })
 keymap("n", "<leader>xl", "<cmd>Trouble lsp toggle<CR>", { desc = "LSP References" })
 keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix" })
+keymap("n", "<leader>xt", "<cmd>Trouble todo toggle<CR>", { desc = "TODOs" })
+keymap("n", "<leader>xT", "<cmd>TodoTroubleToggle filter.buf=0<CR>", { desc = "Buffer TODOs" })
 
 
 
@@ -74,7 +75,6 @@ end, { desc = "Lint buffer" })
 -- =============================================================================
 -- Git
 -- =============================================================================
-keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
 keymap("n", "<leader>gL", "<cmd>LazyGitCurrentFile<CR>", { desc = "LazyGit current file" })
 keymap("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diff view" })
 keymap("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close diff view" })
@@ -113,8 +113,7 @@ end, { desc = "Conditional breakpoint" })
 -- UI / Toggle
 -- =============================================================================
 keymap("n", "<leader>uz", "<cmd>ZenMode<CR>", { desc = "Zen Mode" })
-keymap("n", "<leader>ue", "<cmd>EdgyToggle<CR>", { desc = "Toggle Edgy" })
-keymap("n", "<leader>ao", "<cmd>AerialToggle<CR>", { desc = "Aerial outline" })
+keymap("n", "<leader>a", "<cmd>AerialToggle<CR>", { desc = "Aerial outline" })
 keymap("n", "<C-\\>", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal" })
 
