@@ -19,11 +19,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   -- Theme
-  --{
-  --  "catppuccin/nvim",
-  --  name = "catppuccin",
-  --  priority = 1000
-  --},
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000
+  -- },
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000
@@ -463,7 +463,7 @@ local loader = require("core.loader")
 
 -- Load critical configs immediately (UI essentials)
 local critical_configs = {
-  "plugins.config.gruvbox",
+  "plugins.config.theme",
   "plugins.config.lualine",
   "plugins.config.bufferline",
   "plugins.config.treesitter",
