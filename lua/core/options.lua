@@ -25,6 +25,7 @@ opt.sidescrolloff = 8
 
 -- Appearance
 opt.termguicolors = true
+vim.opt.background = "dark"
 opt.signcolumn = "yes"
 -- opt.fillchars = { eob = " " }
 opt.cursorline = false
