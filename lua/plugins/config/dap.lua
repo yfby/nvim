@@ -1,4 +1,14 @@
 -- DAP (Debug Adapter Protocol) configuration
+-- Provides debugging for Python, Node.js, Go, Rust, and C/C++.
+--
+-- Python configs auto-detect Django vs FastAPI projects by checking for
+-- manage.py and pyproject.toml respectively. This means you can just hit
+-- <leader>dc in any Python project and it picks the right entry point.
+--
+-- Remote attach configs are included for debugging Docker containers or
+-- remote processes that expose a debug port.
+--
+-- DAP UI auto-opens when debugging starts and auto-closes when it ends.
 local dap = require("dap")
 local dapui = require("dapui")
 
@@ -135,6 +145,9 @@ dap.configurations.go = {
 }
 
 -- Rust DAP configuration
+-- Builds the project with `cargo build` before launching.
+-- The binary name matches the workspace folder name (convention for single-binary crates).
+-- Uses codelldb as the debug adapter (installed via mason-nvim-dap).
 dap.configurations.rust = {
   {
     type = "rust",
@@ -151,6 +164,10 @@ dap.configurations.rust = {
 }
 
 -- C/C++ DAP configuration
+-- Launch mode runs a.out in the project root.
+-- CMake variant prompts for the executable path (for out-of-source builds).
+-- stopAtEntry = true pauses at main() so you can set breakpoints before running.
+-- C++ shares the same configs as C (dap.configurations.cpp = dap.configurations.c).
 dap.configurations.c = {
   {
     type = "cpp",
@@ -176,6 +193,9 @@ dap.configurations.c = {
 dap.configurations.cpp = dap.configurations.c
 
 -- DAP UI setup
+-- Layout: left sidebar shows scopes/breakpoints/stacks/watches (40 cols),
+-- bottom panel shows REPL and console (10 rows).
+-- Custom icons use Nerd Font glyphs for a cleaner look.
 dapui.setup {
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
   mappings = {
@@ -229,7 +249,9 @@ dapui.setup {
   },
 }
 
--- Auto open UI when debugging starts
+-- Auto open/close DAP UI on debug session lifecycle
+-- This ensures the UI is visible when debugging starts and hidden when it ends,
+-- so you don't have to manually toggle it each time.
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end

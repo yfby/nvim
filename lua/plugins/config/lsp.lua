@@ -1,13 +1,26 @@
 -- Modern LSP Configuration for Neovim 0.11+
+-- Uses the new vim.lsp.config + vim.lsp.enable API instead of the deprecated
+-- lspconfig.setup() pattern. Server configs are defined in server_configs below
+-- and applied via mason-lspconfig's installed server list.
+--
+-- Architecture:
+--   1. mason ensures all servers are installed
+--   2. Each server gets capabilities from cmp-nvim-lsp (snippet support, etc.)
+--   3. Per-server settings are defined in server_configs (only non-default values)
+--   4. LspAttach autocmd sets buffer-local keymaps when any LSP connects
+--   5. vim.lsp.config + vim.lsp.enable applies everything
+
 local mason_lspconfig = require("mason-lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
--- Add mason bin to PATH for headless operation
+-- Add mason bin to PATH so LSP servers can be found in headless/CI environments
+-- (e.g., when running `nvim --headless` for formatting or linting)
 vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.stdpath("data") .. "/mason/bin"
 
 require("mason").setup()
 
--- Get default capabilities from cmp and enhance them
+-- Capabilities are advertised to each server so they know what completion
+-- features we support (snippets, resolve, etc.)
 local default_capabilities = cmp_nvim_lsp.default_capabilities()
 default_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -39,7 +52,10 @@ mason_lspconfig.setup({
   automatic_installation = true,
 })
 
--- Configure diagnostics
+-- Diagnostic display configuration
+-- virtual_text: show error text inline at end of line
+-- float: rounded border popup triggered by K or <leader>cd
+-- severity_sort: show errors before warnings
 vim.diagnostic.config({
   virtual_text = true,
   float = { border = "rounded", severity_sort = true },
@@ -48,6 +64,10 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
+-- LSP keymaps: set buffer-local when any LSP server attaches
+-- These override the base mappings only for files with active LSP.
+-- Using LspAttach autocmd ensures keymaps are available regardless of
+-- which server attaches or in what order.
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
   callback = function(args)
@@ -74,7 +94,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Server configurations
+-- Per-server configuration overrides
+-- Only non-default settings are included here. Servers without an entry
+-- use default settings with the shared capabilities.
+--
+-- Why these settings matter:
+--   rust-analyzer: allFeatures enables #[cfg(test)] blocks and feature-gated code
+--   gopls: staticcheck for extra linting, gofumpt for stricter formatting
+--   pyright: workspace-wide analysis catches cross-file type errors
+--   ts_ls: inlay hints show parameter names and return types inline
+--   lua_ls: suppresses "undefined global vim" warnings, provides Neovim API completions
+--   clangd: inlay hints for C/C++ parameter types and chaining hints
+--   volar: CSS modules plugin for Vue SFC <style> blocks
+--   jdtls: Eclipse-sourced Java tooling with Maven support
 local server_configs = {
   rust_analyzer = {
     settings = {
@@ -274,7 +306,10 @@ local server_configs = {
   },
 }
 
--- Setup servers using the new vim.lsp.config API
+-- Apply configs using the new vim.lsp.config API (Neovim 0.11+)
+-- This replaces the deprecated lspconfig[server].setup(config) pattern.
+-- Each server gets: default_capabilities + its specific overrides from server_configs.
+-- If vim.lsp.config fails for a server (e.g., not recognized), we notify and continue.
 local installed = mason_lspconfig.get_installed_servers()
 for _, server_name in ipairs(installed) do
   local config = vim.deepcopy(server_configs[server_name] or {})
@@ -292,5 +327,6 @@ for _, server_name in ipairs(installed) do
   end
 end
 
--- Enable the configured servers
+-- Enable all configured servers at once
+-- This triggers LspAttach for each server on matching filetypes
 vim.lsp.enable(installed)
