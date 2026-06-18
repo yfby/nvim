@@ -22,6 +22,7 @@ require("which-key").setup({
 
 vim.defer_fn(function()
   require("which-key").add({
+    { "<leader>`",   group = "Custom" },
     { "<leader>a",   desc = "Aerial Outline" },
     { "<leader>c",   group = "Code" },
     { "<leader>ca",  desc = "Code action" },

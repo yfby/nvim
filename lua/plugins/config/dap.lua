@@ -8,6 +8,11 @@ pcall(function()
 end)
 
 -- Python DAP configuration
+-- The launch config auto-detects the project framework:
+--   manage.py exists  -> Django (runserver --noreload)
+--   pyproject.toml    -> FastAPI (--reload)
+--   neither           -> plain Python
+-- VIRTUAL_ENV is respected if set, otherwise falls back to system python.
 dap.configurations.python = {
   {
     type = "python",
@@ -63,6 +68,10 @@ dap.configurations.python = {
 }
 
 -- Node.js DAP configuration
+-- Three launch options:
+--   Express/React: standard node --inspect-brk on port 9229
+--   Nodemon:       uses npx nodemon --inspect for auto-restart on file changes
+--   ts-node:       directly debugs TypeScript files via npx ts-node
 dap.configurations.node = {
   {
     type = "node",
@@ -96,6 +105,9 @@ dap.configurations.node = {
 }
 
 -- Go DAP configuration
+-- Launch mode runs the current file; test mode runs tests in the current file.
+-- Attach mode lets you connect to a running Go process via process picker.
+-- Requires the delve debugger (`dlv`) to be installed.
 dap.configurations.go = {
   {
     type = "go",

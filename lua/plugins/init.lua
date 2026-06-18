@@ -1,4 +1,6 @@
 -- Bootstrap lazy.nvim
+-- Clones the plugin manager from GitHub if not already present.
+-- This is the first code that runs on startup, so errors here are fatal.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -16,7 +18,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
--- Setup lazy.nvim
+-- Plugin specification for lazy.nvim
+-- Plugins are organized by category (Theme, UI, LSP, etc.) with inline comments.
+-- Lazy loading is used extensively:
+--   event = "VeryLazy"     -> loads after UI is ready (low-priority plugins)
+--   cmd = {...}            -> loads when the command is first invoked
+--   ft = {...}             -> loads for specific filetypes
+--   keys = {...}           -> loads when the keymap is first pressed
+--   config = function()    -> custom setup, references files in lua/plugins/config/
 require("lazy").setup({
   -- Theme
   -- {
@@ -458,6 +467,22 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
+-- =============================================================================
+-- Config Loading Strategy (deferred via safe_require)
+-- =============================================================================
+-- Instead of loading all configs at once, we split them into tiers:
+--
+-- 1. CRITICAL (loaded immediately): theme, lualine, bufferline, treesitter
+--    These must load before the UI renders to prevent flash of unstyled content.
+--
+-- 2. DEFERRED (loaded after VimEnter): everything else
+--    Loaded via safe_require() which wraps pcall — if a config fails,
+--    Neovim still starts and the user gets a notification about the error.
+--
+-- 3. KEYMAPS (loaded last, separate VimEnter autocmd)
+--    Plugin keymaps are loaded after all configs to ensure the plugins
+--    they reference are already initialized.
+
 -- Safe module loader
 local loader = require("core.loader")
 
@@ -475,6 +500,8 @@ for _, module in ipairs(critical_configs) do
 end
 
 -- Defer non-critical configs to after VimEnter
+-- This runs once after the UI has rendered, loading all remaining plugin configs
+-- in sequence. Each load is wrapped in safe_require for resilience.
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local deferred_configs = {
@@ -511,6 +538,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
       "plugins.config.ufo",
       "plugins.config.copilot",
       "plugins.autocmds",
+      "plugins.config.custom.minecraft",
     }
 
     for _, module in ipairs(deferred_configs) do
@@ -521,6 +549,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- Load plugin keymaps after plugins are loaded
+-- This is a separate VimEnter autocmd to ensure all deferred configs above
+-- have finished loading before we set up keymaps that reference them.
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     loader.safe_require("plugins.mappings")
