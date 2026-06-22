@@ -2,12 +2,12 @@ local lint = require("lint")
 
 -- Configure linters by filetype
 lint.linters_by_ft = {
-  python = { "pylint", "flake8" },
+  python = { "ruff" },
   javascript = { "eslint" },
   typescript = { "eslint" },
   javascriptreact = { "eslint" },
   typescriptreact = { "eslint" },
-  lua = { "luacheck" },
+  -- lua = { "luacheck" },
   bash = { "shellcheck" },
   sh = { "shellcheck" },
   yaml = { "yamllint" },
@@ -20,7 +20,7 @@ lint.linters_by_ft = {
   vue = { "eslint", "stylelint" },
   svelte = { "eslint" },
   dockerfile = { "hadolint" },
-  java = { "checkstyle" },
+  -- java = { "checkstyle" },
   jsonc = { "eslint" },
 }
 

@@ -47,8 +47,7 @@ keymap("n", "<leader>xl", "<cmd>Trouble lsp toggle<CR>", { desc = "LSP Reference
 keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix" })
 keymap("n", "<leader>xt", "<cmd>Trouble todo toggle<CR>", { desc = "TODOs" })
 keymap("n", "<leader>xT", "<cmd>TodoTroubleToggle filter.buf=0<CR>", { desc = "Buffer TODOs" })
-
-
+keymap("n", "<leader>ud", toggle_diagnostics, { desc = "Toggle diagnostics" })
 
 -- =============================================================================
 -- File Operations
@@ -139,7 +138,7 @@ keymap("n", "<leader>ui", "<cmd>LspInfo<CR>", { desc = "Lsp Info" })
 -- =============================================================================
 -- WhichKey
 -- =============================================================================
-keymap("n", "<leader>wK", "<cmd>WhichKey<CR>", { desc = "WhichKey all" })
+keymap("n", "<leader>uw", "<cmd>WhichKey<CR>", { desc = "WhichKey all" })
 
 -- =============================================================================
 -- Smart Splits

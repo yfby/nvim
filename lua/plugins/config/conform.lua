@@ -19,7 +19,7 @@ require("conform").setup {
   end,
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "black", "autopep8" },
+    python = { "ruff_format", "ruff_organize_imports" },
     javascript = { "prettier", "eslint_d" },
     typescript = { "prettier", "eslint_d" },
     javascriptreact = { "prettier", "eslint_d" },
@@ -62,6 +62,16 @@ require("conform").setup {
     black = {
       condition = function(ctx)
         return vim.fn.executable("black") == 1
+      end,
+    },
+    ruff_format = {
+      condition = function(ctx)
+        return vim.fn.executable("ruff") == 1
+      end,
+    },
+    ruff_organize_imports = {
+      condition = function(ctx)
+        return vim.fn.executable("ruff") == 1
       end,
     },
     google_java_format = {

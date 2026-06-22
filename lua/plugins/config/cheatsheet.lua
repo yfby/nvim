@@ -148,7 +148,7 @@ function M.open()
     "  <leader>um           Mason",
     "  <leader>ui           Lsp Info",
     "  <leader>?            Cheatsheet",
-    "  <leader>wK           WhichKey all",
+    "  <leader>uw           WhichKey all",
     "  <leader>m            Dashboard",
     "  gc gb                Comment line/block",
     "  gcc                  Comment current line",
@@ -201,4 +201,3 @@ vim.api.nvim_create_user_command("Cheatsheet", function()
 end, {})
 
 return M
-

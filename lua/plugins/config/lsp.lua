@@ -17,7 +17,11 @@ local cmp_nvim_lsp = require("cmp_nvim_lsp")
 -- (e.g., when running `nvim --headless` for formatting or linting)
 vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.stdpath("data") .. "/mason/bin"
 
-require("mason").setup()
+require("mason").setup({
+  ensure_installed = {
+    "ruff",
+  },
+})
 
 -- Capabilities are advertised to each server so they know what completion
 -- features we support (snippets, resolve, etc.)
@@ -30,7 +34,7 @@ mason_lspconfig.setup({
     "ts_ls",
     "rust_analyzer",
     "gopls",
-    "pyright",
+    "basedpyright",
     "clangd",
     "bashls",
     "jsonls",
@@ -47,7 +51,6 @@ mason_lspconfig.setup({
     "dockerfile_language_server",
     "sqls",
     "stylelint_lint",
-    "jdtls",
   },
   automatic_installation = true,
 })
@@ -60,9 +63,21 @@ vim.diagnostic.config({
   virtual_text = true,
   float = { border = "rounded", severity_sort = true },
   underline = true,
+  signs = true,
   severity_sort = true,
   update_in_insert = false,
 })
+
+_G.diagnostics_enabled = true
+function _G.toggle_diagnostics()
+  diagnostics_enabled = not diagnostics_enabled
+  vim.diagnostic.config({
+    virtual_text = diagnostics_enabled,
+    underline = diagnostics_enabled,
+    signs = diagnostics_enabled,
+  })
+  vim.notify(diagnostics_enabled and "Diagnostics enabled" or "Diagnostics disabled")
+end
 
 -- LSP keymaps: set buffer-local when any LSP server attaches
 -- These override the base mappings only for files with active LSP.
@@ -101,7 +116,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Why these settings matter:
 --   rust-analyzer: allFeatures enables #[cfg(test)] blocks and feature-gated code
 --   gopls: staticcheck for extra linting, gofumpt for stricter formatting
---   pyright: workspace-wide analysis catches cross-file type errors
+--   basedpyright: workspace-wide analysis catches cross-file type errors
 --   ts_ls: inlay hints show parameter names and return types inline
 --   lua_ls: suppresses "undefined global vim" warnings, provides Neovim API completions
 --   clangd: inlay hints for C/C++ parameter types and chaining hints
@@ -131,9 +146,9 @@ local server_configs = {
       },
     },
   },
-  pyright = {
+  basedpyright = {
     settings = {
-      pyright = {
+      basedpyright = {
         disableLanguageServices = false,
       },
       python = {
@@ -275,35 +290,37 @@ local server_configs = {
       }
     },
   },
-  jdtls = {
-    settings = {
-      java = {
-        eclipse = {
-          downloadSources = true,
-        },
-        configuration = {
-          updateBuildConfiguration = "interactive",
-        },
-        maven = {
-          downloadSources = true,
-        },
-        implementationsCodeLens = {
-          enabled = false,
-        },
-        referencesCodeLens = {
-          enabled = false,
-        },
-        inlayHints = {
-          parameterNames = {
-            enabled = "all",
-          },
-        },
-        format = {
-          enabled = true,
-        },
-      },
-    },
-  },
+  -- jdtls is now handled by nvim-jdtls (plugins/config/jdtls.lua)
+  -- Uncomment below if you want raw jdtls without nvim-jdtls features
+  -- jdtls = {
+  --   settings = {
+  --     java = {
+  --       eclipse = {
+  --         downloadSources = true,
+  --       },
+  --       configuration = {
+  --         updateBuildConfiguration = "interactive",
+  --       },
+  --       maven = {
+  --         downloadSources = true,
+  --       },
+  --       implementationsCodeLens = {
+  --         enabled = false,
+  --       },
+  --       referencesCodeLens = {
+  --         enabled = false,
+  --       },
+  --       inlayHints = {
+  --         parameterNames = {
+  --           enabled = "all",
+  --         },
+  --       },
+  --       format = {
+  --         enabled = true,
+  --       },
+  --     },
+  --   },
+  -- },
 }
 
 -- Apply configs using the new vim.lsp.config API (Neovim 0.11+)

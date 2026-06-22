@@ -315,7 +315,7 @@ Leader key is `<Space>`. Press `<Space>` and wait for which-key popup, or open t
 | `<leader>um` | Mason (LSP manager)      |
 | `<leader>ui` | LSP info                 |
 | `<leader>ua` | Treesitter update        |
-| `<leader>wK` | WhichKey all             |
+| `<leader>uw` | WhichKey all             |
 
 ### Base Mappings
 

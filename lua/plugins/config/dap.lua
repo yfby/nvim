@@ -192,6 +192,41 @@ dap.configurations.c = {
 -- C++ shares C config
 dap.configurations.cpp = dap.configurations.c
 
+-- Java DAP configuration
+-- NOTE: nvim-jdtls provides enhanced Java debugging via jdtls.setup_dap().
+-- These basic configs serve as a fallback. When nvim-jdtls is active,
+-- it overrides these with richer configurations (test methods, class attach, etc.).
+-- Keymaps for Java debugging are in plugins/config/jdtls.lua (<leader>dj, <leader>dJ).
+dap.configurations.java = {
+  {
+    type = "java",
+    request = "launch",
+    name = "Java: Launch current class",
+    mainClass = "${fileBasenameNoExtension}",
+    classPaths = { "${workspaceFolder}/target/classes" },
+    cwd = "${workspaceFolder}",
+    consoleKind = "integratedTerminal",
+  },
+  {
+    type = "java",
+    request = "launch",
+    name = "Java: Launch with main class",
+    mainClass = function()
+      return vim.fn.input("Main class (FQN): ", "", "file")
+    end,
+    classPaths = { "${workspaceFolder}/target/classes" },
+    cwd = "${workspaceFolder}",
+    consoleKind = "integratedTerminal",
+  },
+  {
+    type = "java",
+    request = "attach",
+    name = "Java: Attach to JVM (port 5005)",
+    hostName = "localhost",
+    port = 5005,
+  },
+}
+
 -- DAP UI setup
 -- Layout: left sidebar shows scopes/breakpoints/stacks/watches (40 cols),
 -- bottom panel shows REPL and console (10 rows).

@@ -94,7 +94,7 @@ require("lazy").setup({
     dependencies = {
       'kevinhwang91/promise-async',
     },
-    ft = { 'lua', 'vim', 'python', 'javascript', 'typescript', 'rust', 'go', 'c', 'cpp' },
+    ft = { 'lua', 'vim', 'python', 'javascript', 'typescript', 'rust', 'go', 'c', 'cpp', 'java' },
   },
 
   -- Mini.nvim suite - modern, fast, lightweight utilities
@@ -197,16 +197,6 @@ require("lazy").setup({
     },
   },
 
-  -- Modern testing framework
-  {
-    'nvim-neotest/neotest',
-    dependencies = {
-      'nvim-neotest/nvim-nio',
-      'nvim-lua/plenary.nvim',
-    },
-    opts = {},
-  },
-
   -- Git diff viewer
   {
     'sindrets/diffview.nvim',
@@ -295,8 +285,6 @@ require("lazy").setup({
     },
   },
 
-
-
   -- Terminal integration
   {
     'akinsho/toggleterm.nvim',
@@ -313,8 +301,6 @@ require("lazy").setup({
   {
     'famiu/bufdelete.nvim',
   },
-
-
 
   -- Smart window splits (tmux + neovim)
   {
@@ -357,14 +343,13 @@ require("lazy").setup({
     opts = {},
   },
 
-
-
   -- Debugging (DAP)
   {
     'mfussenegger/nvim-dap',
     cmd = { 'DapContinue', 'DapToggleBreakpoint', 'DapStepInto', 'DapStepOver', 'DapStepOut' },
     dependencies = {
       'rcarriga/nvim-dap-ui',
+      'nvim-neotest/nvim-nio',
       'theHamsta/nvim-dap-virtual-text',
       'nvim-telescope/telescope-dap.nvim',
       'mfussenegger/nvim-dap-python',
@@ -428,8 +413,6 @@ require("lazy").setup({
     opts = {},
   },
 
-
-
   -- Better window management
   {
     'folke/edgy.nvim',
@@ -461,7 +444,11 @@ require("lazy").setup({
     end,
   },
 
-
+  -- Java development (jdtls wrapper with DAP, test runner, refactoring)
+  {
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
+  },
 
   -- Check for plugin updates
   checker = { enabled = true },
@@ -530,11 +517,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
       "plugins.config.neoscroll",
       "plugins.config.smart-splits",
       "plugins.config.refactoring",
+      "plugins.config.jdtls",
       "plugins.config.gitsigns",
       "plugins.config.todo-comments",
       "plugins.config.bqf",
       "plugins.config.aerial",
-      "plugins.config.neotest",
       "plugins.config.ufo",
       "plugins.config.copilot",
       "plugins.autocmds",
