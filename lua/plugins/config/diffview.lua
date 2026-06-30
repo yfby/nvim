@@ -1,3 +1,36 @@
 require("diffview").setup({
   use_icons = true,
+  keymaps = {
+    disable_defaults = false,
+    view = {
+      { "n", "<tab>", require("diffview.config").actions.select_next_entry, { desc = "Open the next diff" } },
+      { "n", "<s-tab>", require("diffview.config").actions.select_prev_entry, { desc = "Open the previous diff" } },
+      { "n", "<leader>e", require("diffview.config").actions.focus_files, { desc = "Focus the files panel" } },
+      { "n", "<leader>b", require("diffview.config").actions.toggle_files, { desc = "Toggle the files panel" } },
+    },
+    file_panel = {
+      { "n", "j", require("diffview.config").actions.next_entry, { desc = "Move to the next file entry" } },
+      { "n", "<down>", require("diffview.config").actions.next_entry, { desc = "Move to the next file entry" } },
+      { "n", "k", require("diffview.config").actions.prev_entry, { desc = "Move to the previous file entry" } },
+      { "n", "<up>", require("diffview.config").actions.prev_entry, { desc = "Move to the previous file entry" } },
+      { "n", "<cr>", require("diffview.config").actions.select_entry, { desc = "Open the diff for the selected entry" } },
+      { "n", "o", require("diffview.config").actions.select_entry, { desc = "Open the diff for the selected entry" } },
+      { "n", "<leader>e", require("diffview.config").actions.focus_files, { desc = "Focus the files panel" } },
+      { "n", "<leader>b", require("diffview.config").actions.toggle_files, { desc = "Toggle the files panel" } },
+      { "n", "R", require("diffview.config").actions.refresh_files, { desc = "Refresh files" } },
+    },
+    file_history_panel = {
+      { "n", "g!", require("diffview.config").actions.options, { desc = "Open the option panel" } },
+      { "n", "<C-A-d>", require("diffview.config").actions.open_in_diffview, { desc = "Open the selected commit in a diffview" } },
+      { "n", "y", require("diffview.config").actions.copy_hash, { desc = "Copy the commit hash" } },
+      { "n", "j", require("diffview.config").actions.next_entry, { desc = "Move to the next file entry" } },
+      { "n", "<down>", require("diffview.config").actions.next_entry, { desc = "Move to the next file entry" } },
+      { "n", "k", require("diffview.config").actions.prev_entry, { desc = "Move to the previous file entry" } },
+      { "n", "<up>", require("diffview.config").actions.prev_entry, { desc = "Move to the previous file entry" } },
+      { "n", "<cr>", require("diffview.config").actions.select_entry, { desc = "Open the diff for the selected entry" } },
+      { "n", "o", require("diffview.config").actions.select_entry, { desc = "Open the diff for the selected entry" } },
+      { "n", "<leader>e", require("diffview.config").actions.focus_files, { desc = "Focus the files panel" } },
+      { "n", "<leader>b", require("diffview.config").actions.toggle_files, { desc = "Toggle the files panel" } },
+    },
+  },
 })

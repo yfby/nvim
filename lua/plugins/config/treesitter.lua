@@ -13,7 +13,7 @@ require("nvim-treesitter").setup({
     "ruby", "php",
     "swift", "objective-c",
     "c_sharp", "fennel", "gleam",
-    "vue", "svelte", "php",
+    "vue", "svelte",
   },
   sync_install = false,
   auto_install = true,

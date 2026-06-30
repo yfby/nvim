@@ -3,12 +3,7 @@
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
   callback = function()
-    -- Support different Neovim versions: prefer vim.highlight.on_yank, fallback to vim.hl.on_yank
-    if type(vim.highlight) == "table" and type(vim.highlight.on_yank) == "function" then
-      vim.highlight.on_yank()
-    elseif type(vim.hl) == "table" and type(vim.hl.on_yank) == "function" then
-      vim.hl.on_yank()
-    end
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
   end,
 })
 
@@ -20,8 +15,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
-
-
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "qf", "help", "man" },
@@ -44,3 +37,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.fillchars = { eob = " " }
   end,
 })
+
+-- Auto-resize splits when terminal window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+  callback = function()
+    vim.cmd("wincmd =")
+  end,
+})
+
+-- -- Disable statuscolumn for sidebar windows
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "NvimTree", "neo-tree", "aerial", "edgy", "trouble", "qf", "help", "man" },
+--   callback = function()
+--     vim.opt_local.statuscolumn = ""
+--   end,
+-- })

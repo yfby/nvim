@@ -1,9 +1,9 @@
 require("nvim-tree").setup({
   view = {
-    width = 35,
-    side = "right",
     number = false,
     relativenumber = false,
+    width = 35,
+    side = "right",
   },
   renderer = {
     group_empty = true,

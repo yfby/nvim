@@ -14,28 +14,12 @@ require("toggleterm").setup({
   start_in_insert = true,
   insert_mappings = true,
   persist_size = true,
-  -- direction = "float",
-  direction = "horizontal",
+  direction = "float",
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = {
     border = "curved",
     winblend = 0,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    },
-  },
-  highlights = {
-    Normal = {
-      link = "Normal",
-    },
-    NormalFloat = {
-      link = "NormalFloat",
-    },
-    FloatBorder = {
-      link = "FloatBorder",
-    },
   },
 })
 
@@ -59,6 +43,44 @@ local lazygit = Terminal:new({
   end,
 })
 
+-- LazyGit
 vim.keymap.set("n", "<leader>gg", function()
   lazygit:toggle()
 end, { desc = "Toggle LazyGit" })
+
+-- Cycle terminal direction: float -> horizontal -> vertical -> float
+local term_directions = { "float", "horizontal", "vertical" }
+local current_direction_idx = 1
+
+vim.keymap.set("n", "<leader>tC", function()
+  current_direction_idx = (current_direction_idx % #term_directions) + 1
+  local dir = term_directions[current_direction_idx]
+  require("toggleterm").toggle(0, nil, dir)
+end, { desc = "Cycle terminal direction" })
+
+-- Multiple named terminals
+local terminals = {}
+
+local function get_or_create_term(name, cmd, dir)
+  if not terminals[name] then
+    terminals[name] = Terminal:new({
+      cmd = cmd,
+      dir = dir or "git_dir",
+      direction = "float",
+      float_opts = {
+        border = "rounded",
+        width = function() return math.floor(vim.o.columns * 0.7) end,
+        height = function() return math.floor(vim.o.lines * 0.6) end,
+      },
+    })
+  end
+  return terminals[name]
+end
+
+vim.keymap.set("n", "<leader>tR", function()
+  get_or_create_term("python", "python"):toggle()
+end, { desc = "Toggle Python REPL" })
+
+vim.keymap.set("n", "<leader>tN", function()
+  get_or_create_term("node", "node"):toggle()
+end, { desc = "Toggle Node REPL" })

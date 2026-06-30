@@ -301,15 +301,3 @@ end
 pcall(function()
   require("telescope").load_extension("dap")
 end)
-
--- DAP keymaps
-local keymap = vim.keymap.set
-
-keymap("n", "<leader>dc", function() require("dap").continue() end, { desc = "DAP: Continue" })
-keymap("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "DAP: Toggle Breakpoint" })
-keymap("n", "<leader>dsi", function() require("dap").step_into() end, { desc = "DAP: Step Into" })
-keymap("n", "<leader>dss", function() require("dap").step_over() end, { desc = "DAP: Step Over" })
-keymap("n", "<leader>dso", function() require("dap").step_out() end, { desc = "DAP: Step Out" })
-keymap("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP: REPL" })
-keymap("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP: Run Last" })
-keymap("n", "<leader>dt", function() require("dap").terminate() end, { desc = "DAP: Terminate" })

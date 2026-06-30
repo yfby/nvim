@@ -27,16 +27,27 @@ opt.sidescrolloff = 8
 opt.termguicolors = true
 vim.opt.background = "dark"
 opt.signcolumn = "yes"
--- opt.fillchars = { eob = " " }
 opt.cursorline = false
 opt.showmode = false
 opt.showtabline = 2
 opt.splitbelow = true
 opt.splitright = true
+opt.fillchars = {
+  eob = " ",
+  fold = " ",
+  foldopen = " ",
+  foldsep = " ",
+  foldclose = " ",
+  lastline = " ",
+}
+
 -- Only set guifont for GUI environments (not terminal)
 if vim.fn.has("gui_running") == 1 then
   opt.guifont = "JetBrainsMono Nerd Font:h17"
 end
+
+-- -- Statuscolumn: line numbers + git signs + diagnostics in gutter
+-- opt.statuscolumn = "%=%{v:virtnum < 2 ? v:lnum : ''} %s%C"
 
 -- Behavior
 opt.mouse = "a"

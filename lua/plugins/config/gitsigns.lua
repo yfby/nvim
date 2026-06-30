@@ -16,7 +16,7 @@ require("gitsigns").setup({
     follow_files = true,
   },
   attach_to_untracked = true,
-  current_line_blame = true,
+  current_line_blame = false,
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "eol",
@@ -54,5 +54,10 @@ require("gitsigns").setup({
     map("n", "<leader>ghd", gs.diffthis, "Diff This")
     map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
     map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+
+    -- Toggle inline blame
+    map("n", "<leader>ug", function()
+      gs.blame_line({ verbose = not gs.is_blameable() })
+    end, "Toggle git blame")
   end,
 })

@@ -182,34 +182,34 @@ local function setup_jdtls()
       local opts = { buffer = bufnr, silent = true }
 
       -- Auto-imports and organize
-      keymap("n", "<leader>jo", function() jdtls.organize_imports() end,
+      keymap("n", "<leader>ljo", function() jdtls.organize_imports() end,
         vim.tbl_extend("force", opts, { desc = "Java: Organize imports" }))
-      keymap("n", "<leader>jv", function() jdtls.extract_variable() end,
+      keymap("n", "<leader>ljv", function() jdtls.extract_variable() end,
         vim.tbl_extend("force", opts, { desc = "Java: Extract variable" }))
-      keymap("n", "<leader>jm", function() jdtls.extract_method(true) end,
+      keymap("n", "<leader>ljm", function() jdtls.extract_method(true) end,
         vim.tbl_extend("force", opts, { desc = "Java: Extract method" }))
-      keymap("n", "<leader>jf", function() jdtls.extract_field() end,
+      keymap("n", "<leader>ljf", function() jdtls.extract_field() end,
         vim.tbl_extend("force", opts, { desc = "Java: Extract field" }))
-      keymap("n", "<leader>jn", function() jdtls.extract_constant() end,
+      keymap("n", "<leader>ljn", function() jdtls.extract_constant() end,
         vim.tbl_extend("force", opts, { desc = "Java: Extract constant" }))
 
       -- Project/build
-      keymap("n", "<leader>jR", function() jdtls.update_project_config() end,
+      keymap("n", "<leader>ljR", function() jdtls.update_project_config() end,
         vim.tbl_extend("force", opts, { desc = "Java: Reload project config" }))
-      keymap("n", "<leader>jO", function() jdtls.open_jdt_uri() end,
+      keymap("n", "<leader>ljO", function() jdtls.open_jdt_uri() end,
         vim.tbl_extend("force", opts, { desc = "Java: Open JDT URI" }))
 
       -- DAP keymaps (only if debug adapter is available)
-      keymap("n", "<leader>dj", function() jdtls.dap_configurations() end,
+      keymap("n", "<leader>ljd", function() jdtls.dap_configurations() end,
         vim.tbl_extend("force", opts, { desc = "Java: Debug configurations" }))
-      keymap("n", "<leader>dJ", function() jdtls.dap_main_class_config() end,
+      keymap("n", "<leader>ljD", function() jdtls.dap_main_class_config() end,
         vim.tbl_extend("force", opts, { desc = "Java: Debug main class" }))
 
-      -- Code action shortcuts (in addition to generic <leader>ca)
-      keymap("n", "<leader>ci", function()
+      -- Code action shortcuts (language-specific)
+      keymap("n", "<leader>lji", function()
         vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } } })
       end, vim.tbl_extend("force", opts, { desc = "Java: Organize imports (code action)" }))
-      keymap("n", "<leader>cu", function()
+      keymap("n", "<leader>lju", function()
         vim.lsp.buf.code_action({ context = { only = { "source.fixAll" } } })
       end, vim.tbl_extend("force", opts, { desc = "Java: Fix all problems" }))
 

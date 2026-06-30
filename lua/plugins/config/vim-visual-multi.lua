@@ -1,43 +1,62 @@
-require("vim-visual-multi").setup({
-  disable_after_cursor = true,
-  enable_cursor_words = false,
-  enable_gtab_navigation = false,
-  stay_in_insert_mode = false,
-  cursor_driven_live_filt = true,
-  use_one_more = false,
-  max_visual_scope = 10,
-  search = {
-    highlight = {
-      screen_color = "CursorColumn",
-    },
-  },
-  pair_synchro = {
-    enabled = true,
-    try_pairs = { "'", '"', "(", "[", "{" },
-  },
-  multimode = {
-    enable = true,
-    allow_single = false,
-    disable_cmd = { "y", "d", "c", "!", "<", ">", "gq" },
-    enable_default_mappings = false,
-  },
-  virtual_text = {
-    enabled = true,
-    prefix = "⊙",
-  },
-  default_mappings = false,
-  maps = {
-    ["<Esc>"] = "clear_multis",
-    ["<C-n>"] = "select_next",
-    ["<C-p>"] = "select_prev",
-    ["<C-t>"] = "skip_region",
-    ["<C-j>"] = "select_down",
-    ["<C-k>"] = "select_up",
-    ["<Right>"] = "expand_region",
-    ["<Left>"] = "shrink_region",
-    ["n"] = "next",
-    ["N"] = "prev",
-    ["q"] = "quit",
-    ["<Plug>"] = "multicursor",
-  },
-})
+local g = vim.g
+
+g.VM_maps = {
+  ["Find Word"]      = "<C-n>",
+  ["Find Subword"]   = "<C-n>",
+  ["Select All"]     = "\\A",
+  ["Skip Region"]    = "q",
+  ["Remove Region"]  = "Q",
+  ["Find Next"]      = "n",
+  ["Find Prev"]      = "N",
+  ["Goto Next"]      = "]",
+  ["Goto Prev"]      = "[",
+  ["Seek Next"]      = "<C-f>",
+  ["Seek Prev"]      = "<C-b>",
+  ["Add Cursor Down"]    = "<C-Down>",
+  ["Add Cursor Up"]      = "<C-Up>",
+  ["Add Cursor At Pos"]  = "\\\\",
+  ["Reselect Last"]  = "\\gS",
+  ["Select Operator"] = "s",
+  ["Find Operator"]  = "m",
+  ["Align"]          = "\\a",
+  ["Align Hard"]     = "\\A",
+  ["Transpose"]      = "\\t",
+  ["Duplicate"]      = "\\d",
+  ["Reduce"]         = "\\r",
+  ["Rewrite"]        = "\\e",
+  ["Filter"]         = "\\f",
+  ["Compose"]        = "\\C",
+  ["Merge"]          = "\\m",
+  ["Split"]          = "\\s",
+  ["Remove"]         = "\\R",
+  ["Replace Pattern"] = "R",
+  ["Run Normal"]     = "\\z",
+  ["Run Ex"]         = "\\x",
+  ["Run Visual"]     = "\\v",
+  ["Run Macro"]      = "\\@",
+  ["Numbers"]        = "\\n",
+  ["Numbers Append"] = "\\N",
+  ["Case"]           = "\\c",
+  ["Surround"]       = "S",
+  ["Erase"]          = "<BS>",
+  ["Undo"]           = "u",
+  ["Redo"]           = "<C-r>",
+  ["Transpose b"]    = "\\T",
+  ["Align char"]     = "\\<",
+  ["Align regex"]    = "\\>",
+  ["Fill Registers"] = "\\\\",
+  ["Show Infoline"]  = "\\l",
+  ["Single Mode"]    = "\\<CR>",
+  ["Terminate"]      = "<Esc>",
+  ["Toggle Mappings"] = "\\<Space>",
+  ["Quit"]           = "q",
+}
+
+g.VM_silent_exit = 0
+g.VM_show_warnings = 0
+g.VM_set_statusline = 2
+g.VM_skip_shorter_lines = 1
+g.VM_skip_empty_lines = 0
+g.VM_quit_after_leaving_insert_mode = 0
+g.VM_single_mode_auto_reset = 1
+g.VM_use_first_cursor_in_line = 0
