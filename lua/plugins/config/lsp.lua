@@ -23,7 +23,14 @@ vim.diagnostic.config({
   virtual_text = true,
   float = { border = "rounded", severity_sort = true },
   underline = true,
-  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "✗",
+      [vim.diagnostic.severity.WARN]  = "⚠",
+      [vim.diagnostic.severity.INFO]  = "ℹ",
+      [vim.diagnostic.severity.HINT]  = "➤",
+    },
+  },
   severity_sort = true,
   update_in_insert = false,
 })
@@ -34,7 +41,14 @@ function _G.toggle_diagnostics()
   vim.diagnostic.config({
     virtual_text = diagnostics_enabled,
     underline = diagnostics_enabled,
-    signs = diagnostics_enabled,
+    signs = diagnostics_enabled and {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "✗",
+        [vim.diagnostic.severity.WARN]  = "⚠",
+        [vim.diagnostic.severity.INFO]  = "ℹ",
+        [vim.diagnostic.severity.HINT]  = "➤",
+      },
+    } or false,
   })
   vim.notify(diagnostics_enabled and "Diagnostics enabled" or "Diagnostics disabled")
 end

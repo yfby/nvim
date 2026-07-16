@@ -1,9 +1,7 @@
 require("oil").setup({
+  default_file_explorer = true,
   columns = {
     "icon",
-    "permissions",
-    "size",
-    "modified",
   },
   skip_trailing_separator_on_line_end = true,
   use_default_keymaps = true,
