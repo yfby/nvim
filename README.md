@@ -238,7 +238,7 @@ Leader key is `<Space>`. Press `<Space>` and wait for which-key popup, or open t
 | ----------- | ------------------------ |
 | `<leader>e` | Toggle NvimTree          |
 | `-`         | Open parent directory (Oil) |
-| `<leader>x` | Delete buffer            |
+| `<leader>q` | Delete buffer            |
 
 ### Formatting & Linting
 

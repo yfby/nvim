@@ -46,14 +46,14 @@ keymap("n", "<leader>xs", "<cmd>Trouble symbols toggle<CR>", { desc = "Symbols" 
 keymap("n", "<leader>xl", "<cmd>Trouble lsp toggle<CR>", { desc = "LSP References" })
 keymap("n", "<leader>xq", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix" })
 keymap("n", "<leader>xt", "<cmd>Trouble todo toggle<CR>", { desc = "TODOs" })
-keymap("n", "<leader>xT", "<cmd>TodoTroubleToggle filter.buf=0<CR>", { desc = "Buffer TODOs" })
+keymap("n", "<leader>xT", "<cmd>TodoTrouble filter.buf=0<CR>", { desc = "Buffer TODOs" })
 keymap("n", "<leader>ud", toggle_diagnostics, { desc = "Toggle diagnostics" })
 
 -- =============================================================================
 -- File Operations
 -- =============================================================================
 keymap("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
-keymap("n", "<leader>x", function()
+keymap("n", "<leader>q", function()
   require("mini.bufremove").delete(0)
 end, { desc = "Delete buffer" })
 

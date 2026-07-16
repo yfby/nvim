@@ -375,7 +375,7 @@ require("lazy").setup({
   -- Pretty diagnostics list
   {
     "folke/trouble.nvim",
-    cmd = { "Trouble", "TroubleToggle" },
+    cmd = "Trouble",
     opts = {},
   },
 
