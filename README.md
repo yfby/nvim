@@ -61,7 +61,6 @@ This prevents a broken plugin config from blocking startup. If a deferred config
 | --------------------------------- | ------------------------- |
 | **nvim-tree/nvim-tree.lua**       | File tree                 |
 | **stevearc/oil.nvim**             | File explorer (edit dirs) |
-| **andyg/leap.nvim**               | Fast 2-char jumping       |
 | **folke/flash.nvim**              | Motion with labels        |
 | **karb94/neoscroll.nvim**         | Smooth scrolling          |
 | **mrjones2014/smart-splits.nvim** | Tmux-like splits          |

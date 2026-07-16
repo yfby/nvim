@@ -10,19 +10,4 @@ require("oil").setup({
   view_options = {
     show_hidden = true,
   },
-  git = {
-    add = function()
-      return true
-    end,
-    mv = function()
-      return true
-    end,
-    rm = function()
-      return true
-    end,
-  },
-  keymaps = {
-    ["<leader>gh"] = "actions.git_add",
-    ["<leader>gr"] = "actions.git_rm",
-  },
 })

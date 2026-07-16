@@ -55,16 +55,6 @@ require("lazy").setup({
     dependencies = shared_deps,
   },
 
-  -- Better jumping/flying
-  {
-    "andyg/leap.nvim",
-    url = "https://codeberg.org/andyg/leap.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "gs", mode = { "n", "x", "o" }, desc = "Leap to windows" },
-    },
-  },
-
   -- Lazygit integration
   {
     "kdheepak/lazygit.nvim",
@@ -460,7 +450,7 @@ require("lazy").setup({
   {
     "Wansmer/treesj",
     keys = {
-      { "<leader>j", function() require("treesj").toggle() end, desc = "Toggle split/join" },
+      { "<leader>j", function() require("treesj").toggle() end,                                 desc = "Toggle split/join" },
       { "<leader>J", function() require("treesj").toggle({ split = { recursive = true } }) end, desc = "Toggle split/join (recursive)" },
     },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
