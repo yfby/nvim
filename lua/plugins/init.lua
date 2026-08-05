@@ -87,10 +87,7 @@ require("lazy").setup({
     event = "VeryLazy",
     opts = {},
   },
-  {
-    "echasnovski/mini.bufremove",
-    lazy = true,
-  },
+
   {
     "echasnovski/mini.icons",
     version = false,
@@ -542,7 +539,6 @@ require("lazy").setup({
   {
     "chrisgrieser/nvim-origami",
     event = "VeryLazy",
-    tag = "v1.9",
     opts = {},
   },
 

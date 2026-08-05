@@ -28,6 +28,9 @@ require("nvim-treesitter").setup({
       node_decremental = "<M-space>",
     },
   },
+})
+
+require("nvim-treesitter-textobjects").setup({
   textobjects = {
     select = {
       enable = true,

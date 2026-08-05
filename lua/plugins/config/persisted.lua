@@ -1,6 +1,6 @@
 require("persisted").setup({
   save_dir = vim.fn.stdpath("data") .. "/sessions/",
-  command = "VimLeavePre",
+  event = "VimLeavePre",
   autostart = true,
   autoload = true,
   should_save = function()
