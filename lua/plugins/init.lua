@@ -353,12 +353,6 @@ require("lazy").setup({
     end,
   },
 
-  -- Refactoring tools
-  {
-    "ThePrimeagen/refactoring.nvim",
-    cmd = { "RefactoringInlineVariable", "RefactoringExtractVariable", "RefactoringExtractFunction" },
-    dependencies = shared_deps,
-  },
 
   -- Pretty diagnostics list
   {
@@ -576,7 +570,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
       "plugins.config.zen-mode",
       "plugins.config.neoscroll",
       "plugins.config.smart-splits",
-      "plugins.config.refactoring",
       "plugins.config.jdtls",
       "plugins.config.todo-comments",
       "plugins.config.bqf",
