@@ -67,15 +67,6 @@ require("lazy").setup({
     },
   },
 
-  -- Better folding
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-    },
-    ft = { "lua", "vim", "python", "javascript", "typescript", "rust", "go", "c", "cpp", "java" },
-  },
-
   -- Mini.nvim individual modules (instead of full suite)
   {
     "echasnovski/mini.ai",
@@ -590,7 +581,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
       "plugins.config.todo-comments",
       "plugins.config.bqf",
       "plugins.config.aerial",
-      "plugins.config.ufo",
       "plugins.config.copilot",
       "plugins.autocmds",
     }

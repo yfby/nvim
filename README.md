@@ -87,7 +87,6 @@ This prevents a broken plugin config from blocking startup. If a deferred config
 | ----------------------------------------------- | ------------------- |
 | **nvim-treesitter/nvim-treesitter**             | Syntax highlighting |
 | **nvim-treesitter/nvim-treesitter-textobjects** | Text objects        |
-| **kevinhwang91/nvim-ufo**                       | Better folding      |
 
 ### Git
 

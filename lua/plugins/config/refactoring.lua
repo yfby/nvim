@@ -26,12 +26,16 @@ require("refactoring").setup {
 local keymap = vim.keymap.set
 
 -- Extract variable
-keymap("v", "<leader>rev", function() require("refactoring").refactor("Extract Variable") end, { desc = "Extract Variable" })
-keymap("n", "<leader>rev", function() require("refactoring").refactor("Extract Variable") end, { desc = "Extract Variable" })
+keymap("v", "<leader>rev", function() require("refactoring").refactor("Extract Variable") end,
+  { desc = "Extract Variable" })
+keymap("n", "<leader>rev", function() require("refactoring").refactor("Extract Variable") end,
+  { desc = "Extract Variable" })
 
 -- Extract function
-keymap("v", "<leader>ref", function() require("refactoring").refactor("Extract Function") end, { desc = "Extract Function" })
-keymap("n", "<leader>ref", function() require("refactoring").refactor("Extract Function") end, { desc = "Extract Function" })
+keymap("v", "<leader>ref", function() require("refactoring").refactor("Extract Function") end,
+  { desc = "Extract Function" })
+keymap("n", "<leader>ref", function() require("refactoring").refactor("Extract Function") end,
+  { desc = "Extract Function" })
 
 -- Extract block
 keymap("v", "<leader>reb", function() require("refactoring").refactor("Extract Block") end, { desc = "Extract Block" })
