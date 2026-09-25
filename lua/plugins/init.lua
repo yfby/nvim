@@ -524,7 +524,13 @@ require("lazy").setup({
   {
     "chrisgrieser/nvim-origami",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      autoFold = {
+        enabled = false,
+        kinds = { "comment", "imports" }, ---@type lsp.FoldingRangeKind[]
+      },
+    },
+
   },
 
   -- Check for plugin updates
